@@ -21,17 +21,24 @@ CREATE TABLE alat (
 -- Tabel Utama: peminjaman_alat
 -- Menyimpan data peminjaman alat oleh mahasiswa/peminjam
 -- Relasi: many-to-one dengan tabel alat
+-- Kolom:
+-- - kode_peminjaman: Kode unik peminjaman (10 karakter alfanumerik)
+-- - nama_peminjam: Nama lengkap peminjam
+-- - nomor_identitas: Nomor identitas unik (NIM/NIP)
+-- - jumlah_alat: Jumlah alat yang dipinjam (1-10)
+-- - alat_id: Foreign key ke tabel alat
 -- =====================================================
 CREATE TABLE peminjaman_alat (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    kode_peminjaman CHAR(10) NOT NULL UNIQUE COMMENT 'Kode unik peminjaman (10 karakter alfanumerik)',
-    nama_peminjam VARCHAR(100) NOT NULL COMMENT 'Nama lengkap peminjam',
-    nomor_identitas VARCHAR(30) NOT NULL UNIQUE COMMENT 'Nomor identitas unik (NIM/NIP)',
-    jumlah_alat TINYINT UNSIGNED NOT NULL CHECK (jumlah_alat BETWEEN 1 AND 10) COMMENT 'Jumlah alat yang dipinjam (1-10)',
-    alat_id BIGINT UNSIGNED NOT NULL COMMENT 'Foreign key ke tabel alat',
+    kode_peminjaman CHAR(10) NOT NULL UNIQUE,
+    nama_peminjam VARCHAR(100) NOT NULL,
+    nomor_identitas VARCHAR(30) NOT NULL UNIQUE,
+    jumlah_alat TINYINT UNSIGNED NOT NULL,
+    alat_id BIGINT UNSIGNED NOT NULL,
     created_at TIMESTAMP NULL DEFAULT NULL,
     updated_at TIMESTAMP NULL DEFAULT NULL,
-    FOREIGN KEY (alat_id) REFERENCES alat(id) ON UPDATE CASCADE ON DELETE RESTRICT
+    CONSTRAINT chk_jumlah_alat CHECK (jumlah_alat BETWEEN 1 AND 10),
+    CONSTRAINT fk_peminjaman_alat FOREIGN KEY (alat_id) REFERENCES alat(id) ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
