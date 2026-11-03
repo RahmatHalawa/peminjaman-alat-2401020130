@@ -67,10 +67,10 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
+        // Validasi input dengan aturan yang ketat
         $request->validate([
             'kode_peminjaman' => 'required|size:10|regex:/^[A-Za-z0-9]+$/',
-            'nama_peminjam' => 'required|min:3|max:100',
+            'nama_peminjam' => 'required|min:3|max:100|regex:/^[a-zA-Z\s]+$/',
             'nomor_identitas' => 'required|min:5|max:30',
             'jumlah_alat' => 'required|integer|min:1|max:10',
             'alat_id' => 'required|exists:alat,id'
@@ -81,6 +81,7 @@ class PeminjamanController extends Controller
             'nama_peminjam.required' => 'Nama peminjam wajib diisi',
             'nama_peminjam.min' => 'Nama peminjam minimal 3 karakter',
             'nama_peminjam.max' => 'Nama peminjam maksimal 100 karakter',
+            'nama_peminjam.regex' => 'Nama peminjam hanya boleh berisi huruf dan spasi',
             'nomor_identitas.required' => 'Nomor identitas wajib diisi',
             'nomor_identitas.min' => 'Nomor identitas minimal 5 karakter',
             'nomor_identitas.max' => 'Nomor identitas maksimal 30 karakter',
@@ -183,6 +184,7 @@ class PeminjamanController extends Controller
             'nama_peminjam.required' => 'Nama peminjam wajib diisi',
             'nama_peminjam.min' => 'Nama peminjam minimal 3 karakter',
             'nama_peminjam.max' => 'Nama peminjam maksimal 100 karakter',
+            'nama_peminjam.regex' => 'Nama peminjam hanya boleh berisi huruf dan spasi',
             'nomor_identitas.required' => 'Nomor identitas wajib diisi',
             'nomor_identitas.min' => 'Nomor identitas minimal 5 karakter',
             'nomor_identitas.max' => 'Nomor identitas maksimal 30 karakter',
