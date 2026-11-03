@@ -2,8 +2,14 @@
 
 if (!function_exists('statusJumlah')) {
     /**
-     * Menampilkan status berdasarkan jumlah alat
-     * Banyak jika >= 3, Sedikit jika < 3
+     * Menampilkan status berdasarkan jumlah alat yang dipinjam
+     * 
+     * Fungsi ini menggunakan percabangan untuk menentukan status:
+     * - Jika jumlah >= 3, return 'Banyak'
+     * - Jika jumlah < 3, return 'Sedikit'
+     * 
+     * @param int $jumlah Jumlah alat yang dipinjam (1-10)
+     * @return string Status 'Banyak' atau 'Sedikit'
      */
     function statusJumlah($jumlah)
     {
