@@ -10,11 +10,12 @@
 Aplikasi web untuk mencatat peminjaman alat laboratorium menggunakan Laravel. Aplikasi ini menyediakan fitur CRUD lengkap, pencarian, dan filter berdasarkan alat.
 
 ## Teknologi
-- Laravel 12
-- PHP 8.2
-- MySQL/MariaDB
+- Laravel 12.70.2
+- PHP 8.2+
+- MySQL 8.0 / MariaDB 10.x
 - PDO (PHP Data Objects)
 - Blade Template Engine
+- Composer 2.x
 
 ## Fitur
 1. **Create**: Menambah data peminjaman baru
